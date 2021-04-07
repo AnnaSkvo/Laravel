@@ -18,3 +18,4 @@ class NewsController extends Controller
         return view('news.show', ['news' => $id]);
     }
 }
+
