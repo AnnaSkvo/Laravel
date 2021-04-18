@@ -14,7 +14,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return "Список категорий";
+        $categories = (new Category())->getCategories();
+
+        return view('admin.news.categories.index', ['categories' => $categories]);
     }
 
     /**
