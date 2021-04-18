@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\News;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
@@ -10,14 +11,15 @@ class NewsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function index()
     {
-        $news = (new News())->getNews(true);
-        return view('admin.news.index', [
-            'news' => $news
-        ]);
+    	$news = News::select(['id', 'title', 'text', 'created_at'])->get();
+		return view('admin.news.index', [
+			'news' => $news,
+			'count' => News::count()
+		]);
     }
 
     /**
@@ -27,7 +29,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('admin.news.create');
+		return view('admin.news.create');
     }
 
     /**
@@ -38,14 +40,14 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => ['required', 'string', 'min:2']
-        ]);
+    	$request->validate([
+    		'title' => ['required', 'string', 'min:2']
+		]);
 
 
-        $allowFields = $request->only('title', 'slug', 'description');
+    	$allowFields = $request->only('title', 'slug', 'description');
 
-        return response()->json();
+    	return response()->json();
     }
 
     /**
@@ -67,7 +69,7 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        return "Редактировать новость";
+		return "Редактировать новость";
     }
 
     /**

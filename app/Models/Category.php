@@ -11,17 +11,22 @@ class Category extends Model
 {
     use HasFactory;
 
-    /**
-     * @var string
-     */
-    protected $table = "categories";
+	/**
+	 * @var string
+	 */
+	protected $table = "categories";
 
-    public function getCategories()
-    {
-        return \DB::table($this->table)
-            ->select(['id', 'title', 'created_at'])
-            ->where('is_visible', true)
-            ->get();
-    }
+	protected $fillable = [
+		'title', 'description', 'is_visible'
+	];
 
+	protected $casts = [
+		'is_visible' => 'boolean'
+	];
+
+
+	public function news(): HasMany
+	{
+		return $this->hasMany(News::class, 'category_id', 'id');
+	}
 }

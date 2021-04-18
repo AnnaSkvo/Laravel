@@ -17,7 +17,7 @@
 <x-site-header></x-site-header>
 
 <div class="container">
-    @yield('content')
+   @yield('content')
 </div>
 
 <hr>

@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
@@ -23,12 +22,30 @@ Route::get('/', function () {
 
 //for admin
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
-    Route::resource('/categories', AdminCategoryController::class);
-    Route::resource('/news', AdminNewsController::class);
+  Route::resource('/categories', AdminCategoryController::class);
+  Route::resource('/news', AdminNewsController::class);
 });
 
 Route::get('/news', [NewsController::class, 'index'])
-    ->name('news');
+	->name('news');
 Route::get('/news/show/{id}', [NewsController::class, 'show'])
-    ->where('id', '\d+')
-    ->name('news.show');
+	->where('id', '\d+')
+	->name('news.show');
+
+
+Route::get('/collections', function() {
+	$collect = collect([
+		'string',
+		'age',
+		'name',
+		4
+	]);
+
+	dd($collect->last(function($last) {
+		 if(is_numeric($last)) {
+		 	 dd($last * 2);
+		 }
+
+		 return $last;
+	}));
+});

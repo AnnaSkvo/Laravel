@@ -14,27 +14,10 @@ class News extends Model
 
     protected $table = "news";
 
-    public function getNews(bool $isAdmin = false)
-    {
-        if(!$isAdmin){
-        return \DB::table($this->table)
-            ->select(['id', 'title', 'text', 'created_at'])
-            ->where('status', NewsStatusEnum::PUBLISHED)
-            ->get();
-        }
 
-        return \DB::table($this->table)
-            ->select(['id', 'title', 'text', 'created_at'])
-            ->get();
-    }
-    public function getNewsById(int $id)
-    {
-        return \DB::table($this->table)
-            ->select(['id', 'title', 'text', 'created_at'])
-            ->where('id', $id)
-            ->first();
-    }
-
-
+    public function category(): BelongsTo
+	{
+		return $this->belongsTo(Category::class, 'category_id', 'id');
+	}
 
 }

@@ -4,7 +4,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Список категорий</h1>
         <a href="{{ route('admin.categories.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                class="fas fa-plus fa-sm text-white-50"></i> Добавить новую </a>
+                    class="fas fa-plus fa-sm text-white-50"></i> Добавить новую </a>
     </div>
 
     <div class="row">
@@ -26,7 +26,7 @@
                     <td>{{ $category->id }}</td>
                     <td>{{ $category->title }}</td>
                     <td> {{ $category->updated_at }}</td>
-                    <td><a href="">Ред.</a> <a href="">Уд.</a></td>
+                    <td><a href="{{ route('admin.categories.edit', ['category' => $category]) }}">Ред.</a>&nbsp; <a href="">Уд.</a></td>
                 </tr>
             @empty
                 <tr>
