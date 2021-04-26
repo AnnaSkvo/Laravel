@@ -18,18 +18,18 @@ class CategorySeeder extends Seeder
     }
 
     protected function getData(): array
-    {
-        $faker = Factory::create();
-        $data = [];
+	{
+		$faker = Factory::create();
+		$data = [];
 
-        for($i=0; $i < 10; $i++) {
-            $data[] = [
-                'title' => $faker->sentence(mt_rand(3,10)),
-                'description' => $faker->text(mt_rand(100, 300)),
-                'is_visible' => $faker->boolean()
-            ];
-        }
+		for($i=0; $i < 10; $i++) {
+			 $data[] = [
+			 	 'title' => $faker->sentence(mt_rand(3,10)),
+				 'description' => $faker->text(mt_rand(100, 300)),
+				 'is_visible' => $faker->boolean()
+			 ];
+		}
 
-        return $data;
-    }
+		return $data;
+	}
 }

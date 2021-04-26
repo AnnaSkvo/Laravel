@@ -17,22 +17,22 @@ class NewsSeeder extends Seeder
     {
         \DB::table('news')->insert($this->getData());
     }
-    protected function getData(): array
-    {
-        $faker = Factory::create();
-        $data = [];
+	protected function getData(): array
+	{
+		$faker = Factory::create();
+		$data = [];
 
-        for($i=0; $i < 10; $i++) {
-            $title = $faker->sentence(mt_rand(3,10));
-            $slug = Str::slug($title);
-            $data[] = [
-                'category_id' => 1,
-                'title' => $title,
-                'slug' => $slug,
-                'text' => $faker->text(mt_rand(100, 300))
-            ];
-        }
+		for($i=0; $i < 10; $i++) {
+			$title = $faker->sentence(mt_rand(3,10));
+			$slug = Str::slug($title);
+			$data[] = [
+				'category_id' => 1,
+				'title' => $title,
+				'slug' => $slug,
+				'text' => $faker->text(mt_rand(100, 300))
+			];
+		}
 
-        return $data;
-    }
+		return $data;
+	}
 }
